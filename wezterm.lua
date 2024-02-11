@@ -11,7 +11,7 @@ if wezterm.config_builder then
 end
 
 require 'font' (config)
-require 'color' (config)
+require 'color' (wezterm, config)
 require 'hyperlinks' (wezterm, config)
 
 config.hide_tab_bar_if_only_one_tab = true config.default_prog = { '/opt/homebrew/bin/tmux' }
