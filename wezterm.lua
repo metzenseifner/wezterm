@@ -10,14 +10,24 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+config.show_update_window = false
+
+-- TODO add this where necessary
+-- if wezterm.target_triple == 'x86_64-apple-darwin' then
+--   -- font_dirs    = { '$HOME/.dotfiles/.fonts' }
+-- end
+
 require 'font' (config)
 require 'color' (wezterm, config)
 require 'hyperlinks' (wezterm, config)
 require 'bell' (wezterm, config)
+require 'keys' (wezterm, config)
 
 -- TODO check whether tmux avail, if so, set it as default program
 config.hide_tab_bar_if_only_one_tab = true
-config.default_prog = { '/opt/homebrew/bin/tmux' }
+config.default_prog = { '/opt/homebrew/bin/tmux' } -- when sending tmux to background, leads to unrecoverable state in wezterm
+-- config.default_prog = { '/bin/zsh', '-c', 'tmux' } -- when sending tmux to background, leads to unrecoverable state in wezterm
+-- config.default_prog = { '/opt/homebrew/bin/wezterm', 'start', '--', '/bin/zsh', '-c', '/opt/homebrew/bin/tmux' } -- when sending tmux to background, leads to unrecoverable state in wezterm
 
 -- macOS specific expansion (like AltGr on other OS); true means: make Option like AltGr
 -- When a key combination produces a composed key result, wezterm will look up
@@ -41,6 +51,13 @@ config.keys = { -- ALT, OPT, META - these are all equivalent
     mods = 'ALT',
     action = wezterm.action.SendString '~' -- send ~ to terminal when pressing OPT-n
   },
+  {
+    -- causes issues with tmux using space bar
+    -- follow by CTRL-Z leads to WezTerm Update Available that cannot be escaped
+    key = 'phys:Space',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
+  }
 }
 -- Input Method Editor (IME) - An OS-provided service which allows for rich composition of input
 -- WezTerm is now able to perform dead-key expansion when use_ime = false

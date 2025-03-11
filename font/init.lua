@@ -3,8 +3,9 @@ local wezterm = require 'wezterm'
 local apply = function(config)
   -- Use following command to discover settings of font. StyleRules differ (intensity for bold in match rule vs weight for bold in font)
   -- wezterm ls-fonts --list-system
-  config.font = wezterm.font('Hack Nerd Font', {})
+  config.font = wezterm.font('Hack Nerd Font', {}) -- also see https://monaspace.githubnext.com
   config.font_size = 15.0
+  config.line_height = 1.2
   config.font_rules = {
     -- https://wezfurlong.org/wezterm/config/lua/config/font_rules.html
     -- Use to decide how to render that text.
