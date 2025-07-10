@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Flake.nix for your WezTerm config repository
-
 {
   description = "WezTerm configuration flake for NixOS integration";
 
