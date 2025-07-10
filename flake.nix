@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flake.nix for your WezTerm config repository
 
 {
@@ -20,4 +21,3 @@
     };
   };
 }
-
