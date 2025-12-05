@@ -5,7 +5,7 @@ local apply = function(config)
   -- wezterm ls-fonts --list-system
   config.font = wezterm.font('Hack Nerd Font', {}) -- also see https://monaspace.githubnext.com
   config.font_size = 15.0
-  config.line_height = 1.2
+  config.line_height = 1.4
   config.font_rules = {
     -- https://wezfurlong.org/wezterm/config/lua/config/font_rules.html
     -- Use to decide how to render that text.

@@ -11,7 +11,8 @@ end
 
 effects.make_bitbucket_namespace_project_clickable = function(tbl)
   table.insert(tbl, {
-    regex = [[["]?bitbucket:([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+    -- regex = [[["]?bitbucket:([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]], -- with hyphens in URLs
+    regex = [[["]?bitbucket:([\w\d]{1}[\w\d]+)(/){1}([\w\d\.]+)["]?]],
     format = 'https://bitbucket.lab.dynatrace.org/projects/$1/repos/$3/browse',
     highlight = 0,
   })
@@ -23,6 +24,7 @@ end
 -- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
 effects.make_github_username_project_clickable = function(tbl)
   table.insert(tbl, {
+    -- regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]], -- with hyphens in URLs
     regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
     format = 'https://www.github.com/$1/$3',
     highlight = 0,
@@ -50,7 +52,8 @@ end
 -- Should be able to catch: https://somebody.sharepoint.com/sites/Learn-and-Develop/SitePages/Performance-Enablement-Resources-(For-Team-Captains).aspx#successfactors-enablement-session-for-team-captains][SuccessFactors Team Captain Enablement
 effects.make_urls_clickable = function(tbl)
   table.insert(tbl, {
-    regex = [[(\w+://[\]a-zA-Z0-9-._~:/?#@!$&'*+,;%=]+)]],
+    -- regex = [[(\w+://[\]a-zA-Z0-9-._~:/?#@!$&'*+,;%=]+)]], -- with ' and : in URL
+    regex = [[(\w+://[\]a-zA-Z0-9-._~/?#@!$&*+,;%=]+)]],
     format = '$1',
     highlight = 1,
   })
